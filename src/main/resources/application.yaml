@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: jpa-study
+  datasource:
+    url: jdbc:mariadb://localhost:3306/jpa_study
+    username: jpaTest
+    password: test1234
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace

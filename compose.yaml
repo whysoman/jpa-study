@@ -1,0 +1,31 @@
+services:
+  mariadb:
+    image: 'mariadb:11.8'
+    container_name: local-db-container
+    restart: 'always'
+    environment:
+      - 'MARIADB_DATABASE=jpa_study'
+      - 'MARIADB_PASSWORD=test1234'
+      - 'MARIADB_ROOT_PASSWORD=test1234'
+      - 'MARIADB_USER=jpaTest'
+      - 'TZ: Asia/Seoul'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'mariadb_data:/var/lib/mysql'
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    command:
+      # 외부접속 허용
+      - --bind-address=0.0.0.0
+      # 이모지 지원
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      # 내부 타임존 일치
+      - --default-time-zone=+09:00
+
+volumes:
+  mariadb_data:

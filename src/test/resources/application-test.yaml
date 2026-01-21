@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        generate_statistics: true
+        query.fail_on_pagination_over_collection_fetch: true
+#        default_batch_fetch_size: 16 # Lazy 연관을 한 건씩이 아닌 IN 절로 묶어서 가져와서 N+1 개선됨
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
+    org.hibernate.stat: debug
+    org.springframework.transaction: trace
+    org.springframework.orm.jpa.JpaTransactionManager: debug
